@@ -225,6 +225,8 @@ func (r *periodicReader) collectAndExport(ctx context.Context) error {
 	if err == nil {
 		err = r.export(ctx, rm)
 	}
+	rm.Resource = nil
+	rm.ScopeMetrics = rm.ScopeMetrics[:]
 	r.rmPool.Put(rm)
 	return err
 }
